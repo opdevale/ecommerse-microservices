@@ -1,0 +1,32 @@
+apiVersion: apps/v1 
+kind: Deployment    
+metadata:              
+  name: payment-service-app
+spec:                
+  selector:         
+    matchLabels:
+      app: payment-service-app
+  replicas: 1        
+  template:
+    metadata:
+      labels:        
+        app: payment-service-app
+    spec:
+      containers:
+        - name: payment-service-app
+          image: onkardevale/payment:v7
+          ports:
+            - containerPort: 8082              
+---                   
+apiVersion: v1
+kind: Service
+metadata:
+  name: payment-service-svc
+spec:
+  ports:
+    - targetPort: 8082
+      port: 80
+  selector:
+    app: payment-service-app
+            
+        

@@ -1,0 +1,25 @@
+server:
+  port: 8080
+
+spring:  application:    name: api-gateway-service
+  cloud:    gateway:      routes:      - id: order-service
+        uri: lb://order-service
+        predicates:          - Path=/order/**
+      - id: payment-service
+        uri: lb://payment-service
+        predicates:
+          - Path=/payment/**        - id: product-service
+        uri: lb://product-service
+        predicates:
+          - Path=/product/**,/upload/**                
+  
+eureka:
+  instance:
+    hostname: eureka-0 
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://eureka-0.eureka.default.svc.cluster.local:8761/eureka    
+      

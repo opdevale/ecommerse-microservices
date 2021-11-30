@@ -1,0 +1,32 @@
+server:
+  port: 8082
+  
+spring:
+  application:
+    name: payment-service
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://mysql/payment_order?useSSL=false
+    username: root
+    password: password
+    hikari:
+      initialization-fail-timeout: 0  
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    generate-ddl: true
+    show-sql: true
+    hibernate:
+      ddl-auto: create    
+            
+     
+eureka:
+  instance:
+    hostname: eureka-0 
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://eureka-0.eureka.default.svc.cluster.local:8761/eureka
+    
+       
