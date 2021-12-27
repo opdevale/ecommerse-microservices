@@ -19,15 +19,14 @@ public class OrderService {
 	
 	public List<Order> findAll(){
 		
-		List<Order> orders = repo.findAll();
-		return orders;
+		return repo.findAll();
 	}
 	
 	public Order createOrder(Order order) {
 		
-		order.setOrderId(getRandomNumber());
+		order.setOrderId(new Random().nextLong());
 		order.setStatus(OrderStatus.ACCEPTED);
-		Order order2 = repo.insert(order);
+		Order order2 = repo.save(order);
 		return order2;
 	}
 	
@@ -35,18 +34,5 @@ public class OrderService {
 		
 		Order order2 = repo.save(order);
 		return order2;
-	}
-	
-	public void deleteOrder(long id) {
-		repo.deleteByOrderId(id);
-	}
-	
-	private long getRandomNumber() {
-		long min = 1000000000L;
-		long max = 9999999999L;
-
-		Random random = new Random();
-		return random.nextLong() % (max - min) + max;
-
 	}
 }

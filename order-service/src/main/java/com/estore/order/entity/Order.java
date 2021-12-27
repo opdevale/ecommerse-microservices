@@ -1,32 +1,22 @@
 package com.estore.order.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.FieldType;
+import org.springframework.data.mongodb.core.mapping.MongoId;
 
 import com.estore.order.util.OrderStatus;
-
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Entity
-@Table(name = "order_table")
-@AllArgsConstructor
-@NoArgsConstructor
 @Data
+@Document("order")
 public class Order {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
-	
+	@MongoId(value = FieldType.INT64)
 	private long orderId;
 	private long productId;
 	private String productName;
 	private long price;
+	
 	private int quantity;
 	private OrderStatus status;
 }
