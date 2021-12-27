@@ -3,14 +3,6 @@ server:
 
 spring:  application:    name: config-service  cloud:    config:      server:
         git:
-          uri:
-  
-eureka:
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    service-url:
-      defaultZone: http://localhost:8761/eureka
-  instance:
-    hostname: localhost       
+          uri: https://github.com/opdevale/ecommerse-microservices/common-config-file
+          #clone-on-start: true      
       

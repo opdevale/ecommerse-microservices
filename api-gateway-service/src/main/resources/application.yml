@@ -11,15 +11,5 @@ spring:  application:    name: api-gateway-service
           - Path=/payment/**        - id: product-service
         uri: lb://product-service
         predicates:
-          - Path=/product/**,/upload/**                
-  
-eureka:
-  instance:
-    hostname: eureka-0 
-    prefer-ip-address: true
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    service-url:
-      defaultZone: http://eureka-0.eureka.default.svc.cluster.local:8761/eureka    
+          - Path=/product/**,/upload/**          
       
