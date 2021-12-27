@@ -3,6 +3,8 @@ package com.estore.product.service;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.List;
+import java.util.Random;
+import java.util.RandomAccess;
 import java.util.zip.DataFormatException;
 import java.util.zip.Deflater;
 import java.util.zip.Inflater;
@@ -13,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.estore.product.entity.Product;
 import com.estore.product.repository.ProductRepository;
+import com.estore.product.util.ProductUtils;
 
 @Service
 public class ProductService {
@@ -36,6 +39,7 @@ public class ProductService {
 
 	public Product registerProduct(Product product) {
 
+		product.setProductId(ProductUtils.getRandomNumber());
 		Product product2 = repo.save(product);
 		return product2;
 	}
